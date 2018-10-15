@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar'
 import { pushMove } from '../../subjects/cursor'
 
 export const Files = ({files}) => {
-	if (!items.length) {
+	if (!files.length) {
 		return (
 			<div style={{textAlign: 'center', paddingTop: '30px'}}>
 				mp3 を zip で<br/>まとめてあげてください。
