@@ -1,0 +1,40 @@
+{
+  "name": "music-showcase",
+  "scripts": {
+    "deploy": "npm run-script build && npm run-script push-page",
+    "push-page": "gh-pages -d dist",
+    "build": "webpack --config webpack.prod.js",
+    "watch": "webpack --watch --config webpack.dev.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "@material-ui/core": "^3.2.1",
+    "jszip": "^3.1.5",
+    "music-metadata-browser": "^0.6.1",
+    "node-libs-browser": "^2.1.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "rxjs": "^6.3.3",
+    "util": "^0.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "extract-loader": "^3.0.0",
+    "file-loader": "^2.0.0",
+    "gh-pages": "^2.0.1",
+    "html-loader": "^0.5.5",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  }
+}
