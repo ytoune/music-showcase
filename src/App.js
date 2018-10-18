@@ -12,9 +12,7 @@ import Button from '@material-ui/core/Button'
 
 import { Paper } from '@material-ui/core'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import * as hoge from '@material-ui/core/styles'
 
-console.log(hoge)
 const styles = {
 	palette: {
 		type: 'dark',
