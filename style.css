@@ -9,7 +9,6 @@ body {
   clear: both; }
 
 #screen {
-  background-color: #fff;
   margin: 0;
   padding: 0; }
   #screen > * {
