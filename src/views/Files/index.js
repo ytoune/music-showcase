@@ -26,7 +26,8 @@ export const Files = ({files}) => {
 			<Div>
 				下のボタンから<br/>
 				mp3 を zip で<br/>
-				まとめてあげてください。
+				まとめてあげてください。<br/>
+				<a href="https://github.com/ytoune/music-showcase/blob/master/README.md" target="_blank">使い方</a>
 			</Div>
 		)
 	}

@@ -23,7 +23,7 @@ export class LoadFile extends Component {
 		}
 		return [
 			<Button onClick={onClick} variant="outlined" key="load">
-				load zip file
+				upload zip file
 			</Button>,
 			<input
 				type="file"
