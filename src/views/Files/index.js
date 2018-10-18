@@ -1,19 +1,33 @@
 
 import React from 'react'
 
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from '@material-ui/core/Avatar'
+import {
+	List,
+	ListItem,
+	ListItemText,
+	Avatar,
+	Paper,
+} from '@material-ui/core'
+
+import { withStyles } from '@material-ui/core'
 
 import { pushMove } from '../../subjects/cursor'
+
+const Div = withStyles({
+	root: {
+		textAlign: 'center',
+		padding: '80px 30px',
+	},
+})(Paper)
 
 export const Files = ({files}) => {
 	if (!files.length) {
 		return (
-			<div style={{textAlign: 'center', paddingTop: '30px'}}>
-				mp3 を zip で<br/>まとめてあげてください。
-			</div>
+			<Div>
+				下のボタンから<br/>
+				mp3 を zip で<br/>
+				まとめてあげてください。
+			</Div>
 		)
 	}
 	const items = files.map(({common: {artists, title}}, idxDiff) => (

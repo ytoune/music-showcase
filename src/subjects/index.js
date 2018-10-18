@@ -1,5 +1,5 @@
 
 export { files } from './files'
-export { cursor } from './cursor'
+export { cursor, isSelected } from './cursor'
 
 export { progress } from './files/zipToFiles'

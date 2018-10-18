@@ -1,4 +1,6 @@
 
+import './fix'
+
 import './index.html'
 import './style.sass'
 
