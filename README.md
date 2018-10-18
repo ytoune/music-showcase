@@ -23,9 +23,9 @@
 
 ```tsv:data.tsv
 More More More.mp3	1:05	2:04
-Love At First Sight.mp3	11:5	13:9.05
+Love At First Sight.mp3	11:5	13:9.82
 Can't Get You Out Of My Head.mp3	3:5	05:04
 ```
 
 `m:n` で `m分n秒` の意味になる。
-秒は少数が書ける。
+秒は小数が書ける。
