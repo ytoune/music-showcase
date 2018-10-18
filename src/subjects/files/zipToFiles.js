@@ -20,7 +20,7 @@ export const zipToFiles = async zip => {
 	const list = []
 	ziped.forEach((path, entry) => list.push(entry))
 
-	return debug(
+	return (
 		(await Promise.all(list.map(format)))
 			.sort(withPriority)
 			.reduce(reducer, [])
@@ -28,4 +28,3 @@ export const zipToFiles = async zip => {
 
 }
 
-const debug = _ => (console.log(_), _)
