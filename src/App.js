@@ -118,10 +118,9 @@ export const App = () => {
 		() => filesFormated[0] || {},
 		[filesFormated],
 	)
-	const onEnded = useCallback(
-		replay => (isSelected ? replay() : pushMove(1)),
-		[],
-	)
+	const onEnded = useCallback(replay => (isSelected ? replay() : pushMove(1)), [
+		isSelected,
+	])
 	const goprev = useCallback(() => pushMove(-1), [])
 	const gonext = useCallback(() => pushMove(1), [])
 	return (
