@@ -1,13 +1,6 @@
-
 import React from 'react'
 
-import {
-	List,
-	ListItem,
-	ListItemText,
-	Avatar,
-	Paper,
-} from '@material-ui/core'
+import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
 
 import { withStyles } from '@material-ui/core'
 
@@ -20,26 +13,46 @@ const Div = withStyles({
 	},
 })(Paper)
 
-export const Files = ({files}) => {
+/**
+ * @typedef {typeof import("../../subjects/files").files} ObservableFiles
+ */
+/**
+ * @template T
+ * @typedef {T extends import("rxjs").Observable<infer U>
+ * ? U : T} Unwarp<T>
+ */
+/**
+ * @type {React.FC<{ files: Unwarp<ObservableFiles> }>}
+ */
+export const Files = ({ files }) => {
 	if (!files.length) {
 		return (
 			<Div>
-				下のボタンから<br/>
-				mp3 を zip で<br/>
-				まとめてあげてください。<br/>
-				<a href="https://github.com/ytoune/music-showcase/blob/master/README.md" target="_blank">使い方</a>
+				下のボタンから
+				<br />
+				mp3 を zip で<br />
+				まとめてあげてください。
+				<br />
+				<a
+					href="https://github.com/ytoune/music-showcase/blob/master/README.md"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					使い方
+				</a>
 			</Div>
 		)
 	}
-	const items = files.map(({common: {artists, title}}, idxDiff) => (
-		<ListItem button key={title} onClick={() => pushMove(idxDiff)} selected={!idxDiff}>
-			<ListItemText primary={title} secondary={artists} />
+	const items = files.map(({ common: { artists, title } }, idxDiff) => (
+		<ListItem
+			button
+			key={title}
+			onClick={() => pushMove(idxDiff)}
+			selected={!idxDiff}
+		>
+			<ListItemText primary={title} secondary={artists && artists.join(', ')} />
 		</ListItem>
 	))
 	items.unshift(...items.splice(-1))
-	return (
-		<List>
-			{items}
-		</List>
-	)
+	return <List>{items}</List>
 }

@@ -1,57 +1,54 @@
-
-import React, { Component, createRef } from 'react'
+import React, { useRef, useCallback, useEffect } from 'react'
 
 import { isSelected } from '../../subjects'
 
-export class Audio extends Component {
-	constructor(...p) {
-		super(...p)
-		this.onTimeUpdate = this.onTimeUpdate.bind(this)
-		this._ref = createRef()
-		this._$ = []
-	}
-	componentDidMount() {
-		this._$.push(isSelected.subscribe(isSelected => isSelected && this.setStart()))
-		document.body.addEventListener('keydown', this.onKeyDown)
-	}
-	componentWillUnmount() {
-		let $
-		while ($ = this._$.pop())
-			$.unsubscribe()
-		document.body.removeEventListener('keydown', this.onKeyDown)
-	}
-	setStart() {
-		this._ref.current.currentTime = 0
-	}
-	onTimeUpdate({target, target: {currentTime}}) {
-		const {props: {start, end}} = this
-		switch (true) {
-			case (end < start):
-				return
-			case (start && currentTime < start):
-			case (end && end <= currentTime):
-				target.currentTime = start
-				return
-			default:
-
+/**
+ * @typedef {(replay: () => void) => void} OnEnded
+ * @typedef {number | null | false} PositionAsNumber
+ * @type {React.FC<{ start: PositionAsNumber, end: PositionAsNumber, src: string, onEnded: OnEnded }>} */
+export const Audio = ({ start, end, src, onEnded }) => {
+	/** @type {React.MutableRefObject<HTMLAudioElement | null>} */
+	const ref = useRef(null)
+	useEffect(() => {
+		const setStart = () => {
+			if (null == ref.current) return
+			ref.current.currentTime = 0
 		}
-	}
-	render() {
-		const {
-			props: {
-				src,
-				onEnded,
-			},
-			onTimeUpdate,
-		} = this
-		return (
-			<audio
-				src={src}
-				ref={this._ref}
-				controls autoPlay
-				onEnded={onEnded}
-				onTimeUpdate={onTimeUpdate}
-			/>
-		)
-	}
+		const sub = isSelected.subscribe(isSelected => isSelected && setStart())
+		return () => sub.unsubscribe()
+	}, [])
+	const onTimeUpdate = useCallback(
+		({ target, target: { currentTime } }) => {
+			const init = 'number' === typeof start ? start : 0
+			switch (true) {
+				case 'number' !== typeof currentTime:
+				case 'number' === typeof end && end < init:
+					return
+				case currentTime < init:
+				case end && end <= currentTime:
+					target.currentTime = init
+					return
+				default:
+			}
+		},
+		[start, end],
+	)
+	const onEndedWrap = useCallback(
+		() =>
+			onEnded(() => {
+				if (null == ref.current) return
+				ref.current.play()
+			}),
+		[onEnded],
+	)
+	return (
+		<audio
+			src={src}
+			ref={ref}
+			controls
+			autoPlay
+			onEnded={onEndedWrap}
+			onTimeUpdate={onTimeUpdate}
+		/>
+	)
 }
