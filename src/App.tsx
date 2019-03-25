@@ -9,6 +9,9 @@ import {
 import { pushMove } from './subjects/cursor'
 import { select } from './subjects/cursor'
 
+import { File } from './subjects/files/types'
+import { Progress } from './subjects/files/loadings'
+
 import { LoadFile, Files, Audio, Hidable } from './views'
 
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -16,10 +19,11 @@ import Button from '@material-ui/core/Button'
 
 import { Paper } from '@material-ui/core'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import { Subscription } from 'rxjs'
+import { Subscription, Observable } from 'rxjs'
 
-/** @type {import("@material-ui/core/styles/createMuiTheme").ThemeOptions} */
-const styles = {
+import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme'
+
+const styles: ThemeOptions = {
 	palette: {
 		type: 'dark',
 	},
@@ -48,61 +52,45 @@ const styles = {
 const themeLight = createMuiTheme({})
 const themeDark = createMuiTheme(styles)
 
-/** @typedef {{
-	files: typeof files_ extends import("rxjs").Observable<infer U>
-		? U : never,
-	cursor: number,
-	progress: import("./subjects/files/loadings").Progress,
-	isSelected: boolean,
-}} State */
-/** @type {React.FC<{}>} */
-export const App = () => {
-	/** @type {State} */
-	const init = {
-		files: [],
-		cursor: 0,
-		progress: {},
-		isSelected: false,
-	}
-	const [files, setFiles] = useState(init.files)
-	const [cursor, setCousor] = useState(init.cursor)
-	const [progress, setProgress] = useState(init.progress)
-	const [isSelected, setIsSelected] = useState(init.isSelected)
+const useObservable = <T extends any>(observable: Observable<T>, init: T) => {
+	const [current, set] = useState<T>(init)
 	useEffect(() => {
-		const $ = new Subscription()
-		$.add(files_.subscribe(setFiles))
-		$.add(cursor_.subscribe(setCousor))
-		$.add(progress_.subscribe(setProgress))
-		$.add(isSelected_.subscribe(setIsSelected))
-		document.body.addEventListener('keydown', onKeyDown)
+		const $ = observable.subscribe(set)
 		return () => {
 			$.unsubscribe()
+		}
+	}, [])
+	return current
+}
+
+const useFiles = () => {
+	const onKeyDown = useCallback((event: KeyboardEvent) => {
+		switch (event.key) {
+			case 'ArrowUp':
+				pushMove(-1)
+				break
+			case 'ArrowDown':
+				pushMove(1)
+				break
+			case 'ArrowRight':
+			case 'ArrowLeft':
+			case ' ':
+			case 'Enter':
+				select()
+				break
+			case 'Escape':
+				pushMove(0)
+				break
+		}
+	}, [])
+	const files = useObservable(files_, [])
+	const cursor = useObservable(cursor_, 0)
+	useEffect(() => {
+		document.body.addEventListener('keydown', onKeyDown)
+		return () => {
 			document.body.removeEventListener('keydown', onKeyDown)
 		}
 	}, [])
-	const onKeyDown = useCallback(
-		/** @type {(event: KeyboardEvent) => void} */
-		event => {
-			switch (event.key) {
-				case 'ArrowUp':
-					pushMove(-1)
-					break
-				case 'ArrowDown':
-					pushMove(1)
-					break
-				case 'ArrowRight':
-				case 'ArrowLeft':
-				case ' ':
-				case 'Enter':
-					select()
-					break
-				case 'Escape':
-					pushMove(0)
-					break
-			}
-		},
-		[],
-	)
 	const filesFormated = useMemo(
 		() => {
 			const { length } = files
@@ -111,13 +99,31 @@ export const App = () => {
 		},
 		[files, cursor],
 	)
-	const { total = 0, progress: progressNum = 0 } = useMemo(() => progress, [
-		progress,
-	])
+	return filesFormated
+}
+
+const useProgress = () => {
+	return useObservable<Progress>(progress_, {})
+}
+
+const useIsSelected = () => {
+	return useObservable(isSelected_, false)
+}
+
+const useTopFile = (files: File[]) => {
 	const { url = '', preview: { start = 0, end = 0 } = {} } = useMemo(
-		() => filesFormated[0] || {},
-		[filesFormated],
+		() => files[0] || {},
+		[files],
 	)
+	return { url, start, end }
+}
+
+export const App: React.FC<{}> = () => {
+	const files = useFiles()
+	const isSelected = useIsSelected()
+	const { total = 0, progress = 0 } = useProgress()
+	const { url, start, end } = useTopFile(files)
+
 	const onEnded = useCallback(replay => (isSelected ? replay() : pushMove(1)), [
 		isSelected,
 	])
@@ -128,10 +134,10 @@ export const App = () => {
 			<MuiThemeProvider theme={isSelected && url ? themeDark : themeLight}>
 				<Paper className="main">
 					<header>
-						<Hidable show={!!total && progressNum < 1}>
+						<Hidable show={!!total && progress < 1}>
 							<LinearProgress
 								variant="determinate"
-								value={Math.floor(100 * progressNum)}
+								value={Math.floor(100 * progress)}
 							/>
 						</Hidable>
 						<Hidable show={!!url}>
@@ -144,7 +150,7 @@ export const App = () => {
 						</Hidable>
 					</header>
 					<main>
-						<Files files={filesFormated} />
+						<Files files={files} />
 					</main>
 					<footer>
 						<Button onClick={goprev} variant="outlined">

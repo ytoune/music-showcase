@@ -1,5 +1,6 @@
-/** @type {import("@material-ui/core/styles/withStyles").StyleRules} */
-const styles = {
+import { StyleRules } from '@material-ui/core/styles/withStyles'
+
+const styles: StyleRules = {
 	'global body': {
 		margin: 0,
 		padding: 0,

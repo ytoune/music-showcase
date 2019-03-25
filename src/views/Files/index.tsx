@@ -1,10 +1,8 @@
 import React from 'react'
-
 import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
-
 import { withStyles } from '@material-ui/core'
-
 import { pushMove } from '../../subjects/cursor'
+import { File } from '../../subjects/files/types'
 
 const Div = withStyles({
 	root: {
@@ -13,18 +11,7 @@ const Div = withStyles({
 	},
 })(Paper)
 
-/**
- * @typedef {typeof import("../../subjects/files").files} ObservableFiles
- */
-/**
- * @template T
- * @typedef {T extends import("rxjs").Observable<infer U>
- * ? U : T} Unwarp<T>
- */
-/**
- * @type {React.FC<{ files: Unwarp<ObservableFiles> }>}
- */
-export const Files = ({ files }) => {
+export const Files: React.FC<{ files: File[] }> = ({ files }) => {
 	if (!files.length) {
 		return (
 			<Div>

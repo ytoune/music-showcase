@@ -2,21 +2,15 @@ import React, { useRef, useCallback } from 'react'
 import { pushZip } from '../../subjects/upload'
 import Button from '@material-ui/core/Button'
 
-/** @type {React.FC<{}>} */
-export const LoadFile = () => {
-	/** @type {React.MutableRefObject<HTMLInputElement | null>} */
-	const btnRef = useRef(null)
+export const LoadFile: React.FC<{}> = () => {
+	const btnRef = useRef<HTMLInputElement | null>(null)
 	const onClick = useCallback(() => {
 		if (null == btnRef.current) return
 		btnRef.current.click()
 	}, [])
-	const onChange = useCallback(
-		/** @param {React.ChangeEvent<HTMLInputElement>} e */
-		e => {
-			if (e.target.files) Array.from(e.target.files).map(pushZip)
-		},
-		[],
-	)
+	const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files) Array.from(e.target.files).map(pushZip)
+	}, [])
 	return (
 		<>
 			<Button onClick={onClick} variant="outlined">

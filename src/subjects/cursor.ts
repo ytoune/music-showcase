@@ -3,8 +3,7 @@ import { scan, map, shareReplay } from 'rxjs/operators'
 
 const moves = new BehaviorSubject(0)
 
-/** @type {(move: number) => void} */
-export const pushMove = move => moves.next(move)
+export const pushMove = (move: number) => moves.next(move)
 
 export const cursor = moves.pipe(
 	scan((prev, move) => prev + move, 0),

@@ -1,5 +1,6 @@
 import './fix'
 
+//@ts-ignore
 import './index.html'
 import style from './style'
 

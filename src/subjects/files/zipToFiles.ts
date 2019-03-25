@@ -1,14 +1,12 @@
-import { loadAsync } from 'jszip'
+import { loadAsync, JSZipObject } from 'jszip'
 
-/** @typedef {import("./format").Task} Task */
 import { format, reducer, withPriority } from './format'
 
 import { pushLoadStatus, RESET, ADD, DONE } from './loadings'
 
 export { progress } from './loadings'
 
-/** @param {File} zip */
-export const zipToFiles = async zip => {
+export const zipToFiles = async (zip: File) => {
 	pushLoadStatus(RESET)
 	pushLoadStatus(ADD)
 
@@ -16,9 +14,8 @@ export const zipToFiles = async zip => {
 
 	pushLoadStatus(DONE)
 
-	/** @type {import("jszip").JSZipObject[]} */
-	const list = []
-	ziped.forEach((path, entry) => list.push(entry))
+	const list: JSZipObject[] = []
+	ziped.forEach((_path, entry) => list.push(entry))
 
 	return (await Promise.all(list.map(format)))
 		.sort(withPriority)

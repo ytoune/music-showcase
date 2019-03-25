@@ -2,13 +2,17 @@ import React, { useRef, useCallback, useEffect } from 'react'
 
 import { isSelected } from '../../subjects'
 
-/**
- * @typedef {(replay: () => void) => void} OnEnded
- * @typedef {number | null | false} PositionAsNumber
- * @type {React.FC<{ start: PositionAsNumber, end: PositionAsNumber, src: string, onEnded: OnEnded }>} */
-export const Audio = ({ start, end, src, onEnded }) => {
-	/** @type {React.MutableRefObject<HTMLAudioElement | null>} */
-	const ref = useRef(null)
+type OnEnded = (replay: () => void) => void
+type PositionAsNumber = number | null | false
+type Audio = React.FC<{
+	start: PositionAsNumber
+	end: PositionAsNumber
+	src: string
+	onEnded: OnEnded
+}>
+
+export const Audio: Audio = ({ start, end, src, onEnded }) => {
+	const ref = useRef<HTMLAudioElement | null>(null)
 	useEffect(() => {
 		const setStart = () => {
 			if (null == ref.current) return

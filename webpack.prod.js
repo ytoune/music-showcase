@@ -1,9 +1,26 @@
 const path = require('path')
 
+const babelLoader = () => ({
+	loader: 'babel-loader',
+	options: {
+		plugins: ['@babel/plugin-syntax-object-rest-spread'],
+		presets: [
+			[
+				'@babel/preset-env',
+				{
+					targets: '> 0.25%, not dead',
+					modules: false,
+				},
+			],
+			'@babel/preset-react',
+		],
+	},
+})
+
 module.exports = {
 	mode: 'production',
 	entry: {
-		app: ['@babel/polyfill', path.resolve(__dirname, 'src/index.js')],
+		app: ['@babel/polyfill', path.resolve(__dirname, 'src/index.tsx')],
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -13,25 +30,11 @@ module.exports = {
 		rules: [
 			{
 				test: /\.jsx?$/,
-				use: [
-					{
-						loader: 'babel-loader',
-						options: {
-							plugins: ['@babel/plugin-syntax-object-rest-spread'],
-							presets: [
-								[
-									'@babel/preset-env',
-									{
-										targets: '> 0.25%, not dead',
-										useBuiltIns: 'entry',
-										modules: false,
-									},
-								],
-								'@babel/preset-react',
-							],
-						},
-					},
-				],
+				use: [babelLoader()],
+			},
+			{
+				test: /\.tsx?$/,
+				use: [babelLoader(), { loader: 'ts-loader' }],
 			},
 			{
 				test: /\.html$/,
@@ -49,6 +52,7 @@ module.exports = {
 	},
 	resolve: {
 		alias: {},
+		extensions: ['.ts', '.tsx', '.js', '.json'],
 	},
 	plugins: [],
 }
