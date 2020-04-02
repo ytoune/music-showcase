@@ -1,5 +1,6 @@
 const path = require('path')
-const basePath = '/music-showcase/'
+const basePath =
+	'development' === process.env.NODE_ENV ? '' : '/music-showcase/'
 module.exports = {
 	env: { SITE_NAME: 'Music Showcase' },
 	assetPrefix: basePath,
