@@ -1,6 +1,6 @@
 {
   "name": "music-showcase",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "description": "",
   "author": {
     "name": "ytoune"
@@ -12,9 +12,10 @@
   "private": true,
   "scripts": {
     "deploy": "yarn build && yarn push-page",
-    "push-page": "gh-pages -d dist",
-    "build": "next export",
+    "push-page": "gh-pages --dist out --dotfiles",
+    "build": "yarn ts-node scripts/prebuild.ts && next build && next export && touch out/.nojekyll",
     "dev": "next",
+    "ts-node": "ts-node --files -O '{\"module\":\"commonjs\"}'",
     "test": "eslint '**/*.ts' '**/*.tsx' --ignore-path .gitignore && tsc --noEmit"
   },
   "dependencies": {},
