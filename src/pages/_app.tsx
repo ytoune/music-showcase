@@ -17,10 +17,9 @@ class App extends NextApp {
 				<Head>
 					<meta charSet="utf-8" />
 					<title>{process.env.SITE_NAME}</title>
-					<meta name="viewport" content="width=device-width,initial-scale=1" />
 					<meta
 						name="viewport"
-						content="minimum-scale=1, initial-scale=1, width=device-width"
+						content="minimum-scale=1,initial-scale=1,width=device-width"
 					/>
 				</Head>
 				<div id="screen">
