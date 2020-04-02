@@ -5,14 +5,14 @@ import {
 	cursor as cursor_,
 	progress as progress_,
 	isSelected as isSelected_,
-} from '../subjects'
-import { pushMove } from '../subjects/cursor'
-import { select } from '../subjects/cursor'
+} from '~/subjects'
+import { pushMove } from '~/subjects/cursor'
+import { select } from '~/subjects/cursor'
 
-import { File } from '../subjects/files/types'
-import { Progress } from '../subjects/files/loadings'
+import { File } from '~/subjects/files/types'
+import { Progress } from '~/subjects/files/loadings'
 
-import { LoadFile, Files, Audio, Hidable } from '../views'
+import { LoadFile, Files, Audio, Hidable } from '~/views'
 
 import LinearProgress from '@material-ui/core/LinearProgress'
 import Button from '@material-ui/core/Button'
@@ -24,7 +24,7 @@ import { Observable } from 'rxjs'
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme'
 
 import { withStyles } from '@material-ui/core/styles'
-import style from '../theme/style'
+import style from '~/theme/style'
 
 const styles: ThemeOptions = {
 	palette: {

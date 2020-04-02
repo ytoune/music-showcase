@@ -9,7 +9,7 @@ module.exports = {
 	webpack(config, _options) {
 		config.resolve.alias = {
 			...config.resolve.alias,
-			'~': path.resolve(__dirname),
+			'~': path.resolve(__dirname, 'src'),
 		}
 		config.node = {
 			...config.node,

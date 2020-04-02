@@ -1,8 +1,8 @@
 import React from 'react'
 import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core'
-import { pushMove } from '../../subjects/cursor'
-import { File } from '../../subjects/files/types'
+import { pushMove } from '~/subjects/cursor'
+import { File } from '~/subjects/files/types'
 
 const Div = withStyles({
 	root: {

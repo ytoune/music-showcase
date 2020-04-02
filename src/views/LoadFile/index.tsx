@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import { pushZip } from '../../subjects/upload'
+import { pushZip } from '~/subjects/upload'
 import Button from '@material-ui/core/Button'
 
 export const LoadFile: React.FC<{}> = () => {

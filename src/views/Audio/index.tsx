@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useEffect } from 'react'
 
-import { isSelected } from '../../subjects'
+import { isSelected } from '~/subjects'
 
 type OnEnded = (replay: () => void) => void
 type PositionAsNumber = number | null | false
