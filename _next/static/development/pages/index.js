@@ -83911,14 +83911,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
 /* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.module.js");
-/* harmony import */ var _subjects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../subjects */ "./src/subjects/index.ts");
-/* harmony import */ var _subjects_cursor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subjects/cursor */ "./src/subjects/cursor.ts");
-/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views */ "./src/views/index.tsx");
+/* harmony import */ var _subjects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ~/subjects */ "./src/subjects/index.ts");
+/* harmony import */ var _subjects_cursor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~/subjects/cursor */ "./src/subjects/cursor.ts");
+/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ~/views */ "./src/views/index.tsx");
 /* harmony import */ var _material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/index.js");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-/* harmony import */ var _theme_style__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../theme/style */ "./src/theme/style.ts");
+/* harmony import */ var _theme_style__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ~/theme/style */ "./src/theme/style.ts");
 
 
 var _this = undefined,
@@ -84530,7 +84530,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var files = _upload__WEBPACK_IMPORTED_MODULE_1__["upload"].pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(_zipToFiles__WEBPACK_IMPORTED_MODULE_2__["zipToFiles"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["shareReplay"])(1));
+
+var sortByName = function sortByName(files) {
+  return files.slice().sort(function (q, w) {
+    return q.name.localeCompare(w.name, [], {
+      numeric: true
+    });
+  });
+};
+
+var files = _upload__WEBPACK_IMPORTED_MODULE_1__["upload"].pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(_zipToFiles__WEBPACK_IMPORTED_MODULE_2__["zipToFiles"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(sortByName), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["shareReplay"])(1));
 
 /***/ }),
 
@@ -84770,7 +84779,7 @@ var styles = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Audio", function() { return Audio; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.module.js");
-/* harmony import */ var _subjects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../subjects */ "./src/subjects/index.ts");
+/* harmony import */ var _subjects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ~/subjects */ "./src/subjects/index.ts");
 var _this = undefined,
     _jsxFileName = "/Users/zono/git/github/music-showcase/src/views/Audio/index.tsx";
 
@@ -84851,7 +84860,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.module.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _subjects_cursor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../subjects/cursor */ "./src/subjects/cursor.ts");
+/* harmony import */ var _subjects_cursor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~/subjects/cursor */ "./src/subjects/cursor.ts");
 
 
 var _this = undefined,
@@ -84965,7 +84974,7 @@ var Files = function Files(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadFile", function() { return LoadFile; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.module.js");
-/* harmony import */ var _subjects_upload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../subjects/upload */ "./src/subjects/upload.ts");
+/* harmony import */ var _subjects_upload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ~/subjects/upload */ "./src/subjects/upload.ts");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 var _this = undefined,
     _jsxFileName = "/Users/zono/git/github/music-showcase/src/views/LoadFile/index.tsx";
