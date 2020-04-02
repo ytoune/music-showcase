@@ -4010,20 +4010,11 @@ var App = /*#__PURE__*/function (_NextApp) {
         }
       }, "Music Showcase"), __jsx("meta", {
         name: "viewport",
-        content: "width=device-width,initial-scale=1",
+        content: "minimum-scale=1,initial-scale=1,width=device-width",
         __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 20,
-          columnNumber: 6
-        }
-      }), __jsx("meta", {
-        name: "viewport",
-        content: "minimum-scale=1, initial-scale=1, width=device-width",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21,
           columnNumber: 6
         }
       })), __jsx("div", {
@@ -4031,14 +4022,14 @@ var App = /*#__PURE__*/function (_NextApp) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26,
+          lineNumber: 25,
           columnNumber: 5
         }
       }, __jsx(Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 26,
           columnNumber: 6
         }
       }))));
