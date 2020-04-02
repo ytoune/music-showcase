@@ -1,26 +1,40 @@
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"module": "esnext",
-		"moduleResolution": "node",
-		"allowSyntheticDefaultImports": true,
-		"strict": true,
-		"allowJs": true,
-		"checkJs": true,
-		"noEmitOnError": true,
-		"jsx": "react",
-		"lib": ["es5", "es6", "dom"],
-		"strictNullChecks": true,
-		"noImplicitThis": true,
-		"noImplicitAny": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"skipLibCheck": true,
-		"outDir": "./output"
-	},
-	"exclude": [
-		"dist/",
-		"node_modules/"
-	]
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmitOnError": true,
+    "jsx": "preserve",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "outDir": "./output",
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "dist/",
+    "node_modules/"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

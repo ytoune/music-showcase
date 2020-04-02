@@ -1,6 +1,7 @@
 import { Preview } from '../types'
 import { JSZipObject } from 'jszip'
-//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import { TSV } from 'tsv'
 
 import { pushLoadStatus, ADD, DONE } from '../loadings'
@@ -37,7 +38,7 @@ const hasdata = (({ filename, start, end }) =>
 		'number' === typeof end &&
 		end === end
 	)) as (
-	row: any,
+	row: unknown,
 ) => row is {
 	filename: string
 	start: number
@@ -69,4 +70,4 @@ const fold = (
 	[filename]: { start, end },
 })
 
-const toNum = (n: any) => Number(n) || 0
+const toNum = (n: unknown) => Number(n) || 0
