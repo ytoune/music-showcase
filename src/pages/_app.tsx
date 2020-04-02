@@ -21,6 +21,10 @@ class App extends NextApp {
 						name="viewport"
 						content="minimum-scale=1,initial-scale=1,width=device-width"
 					/>
+					<meta
+						name="description"
+						content="音楽再生するやつ。即売会などでのプレビュー用のシンプルな音楽プレイヤー。"
+					/>
 				</Head>
 				<div id="screen">
 					<Component {...pageProps} />
