@@ -5,7 +5,7 @@ import { MusicMetas, File } from '../types'
 import { format as formatMusic } from './music'
 import { format as formatTsv } from './tsv'
 
-type Task = [number, Function | null]
+type Task = [number, ((list: MusicMetas[]) => File[]) | null]
 
 type Format = (entry: JSZipObject) => Promise<Task>
 export const format: Format = async entry => {

@@ -1,17 +1,13 @@
 import { Preview } from '../types'
 import { JSZipObject } from 'jszip'
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { TSV } from 'tsv'
 
 import { pushLoadStatus, ADD, DONE } from '../loadings'
+import { parseTSV } from './parseTSV'
 
 export const format = async (entry: JSZipObject) => {
 	pushLoadStatus(ADD)
 
-	const preview: Record<string, Preview> = TSV.parse(
-		'filename\tstart\tend\n' + (await entry.async('text')),
-	)
+	const preview: Record<string, Preview> = parseTSV(await entry.async('text'))
 		.map(totime)
 		.filter(hasdata)
 		.reduce(fold, {})
@@ -30,20 +26,15 @@ const make = (preview: Record<string, Preview>) => <T extends { name: string }>(
 		...file,
 	}))
 
-const hasdata = (({ filename, start, end }) =>
-	!!(
-		filename &&
-		'number' === typeof start &&
-		start === start &&
-		'number' === typeof end &&
-		end === end
-	)) as (
-	row: unknown,
-) => row is {
+type HasData = {
 	filename: string
 	start: number
 	end: number
 }
+
+const hasdata = (v: Record<string, unknown>): v is HasData =>
+	!!v.filename && Number.isFinite(v.start) && Number.isFinite(v.end)
+
 const totime = ({
 	filename,
 	start: _s,
@@ -64,7 +55,7 @@ const strtotime = (str?: string) => {
 
 const fold = (
 	dict: Record<string, Preview>,
-	{ filename, start, end }: { filename: string; start: number; end: number },
+	{ filename, start, end }: HasData,
 ) => ({
 	...dict,
 	[filename]: { start, end },

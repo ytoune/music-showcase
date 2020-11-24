@@ -15,7 +15,6 @@ module.exports = {
 		config.node = {
 			...config.node,
 			fs: 'empty',
-			// eslint-disable-next-line @typescript-eslint/camelcase
 			child_process: 'empty',
 		}
 		return config
