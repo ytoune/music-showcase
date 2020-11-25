@@ -1,7 +1,7 @@
 import { IAudioMetadata } from 'music-metadata'
 
 export type MusicMetas = IAudioMetadata & {
-	url: string
+	blob: Blob
 	name: string
 }
 

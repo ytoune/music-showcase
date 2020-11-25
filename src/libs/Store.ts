@@ -4,7 +4,7 @@ const STORE_NAME = 'files'
 
 type Mode = 'readonly' | 'readwrite' | 'versionchange'
 
-class Store<T> {
+export class Store<T> {
 	constructor(
 		private readonly open: () => Promise<IDBDatabase>,
 		private readonly key: string,
@@ -40,7 +40,7 @@ class Store<T> {
 	}
 }
 
-const openDB = (): Promise<IDBDatabase> =>
+export const openDB = (): Promise<IDBDatabase> =>
 	new Promise<IDBDatabase>((done, error) => {
 		try {
 			const req = indexedDB.open('app', 1)
@@ -71,5 +71,3 @@ const transaction = async <T>(
 		db.close()
 	}
 }
-
-export const openStore = () => new Store<File>(openDB, 'filelist')

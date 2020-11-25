@@ -14,13 +14,12 @@ export const format = async (entry: JSZipObject) => {
 	pushLoadStatus(DONE)
 
 	const metadata = await parseBlob(blob)
-	const url = URL.createObjectURL(blob)
 
 	pushLoadStatus(DONE)
 
 	return {
 		name,
 		...metadata,
-		url,
+		blob,
 	}
 }
