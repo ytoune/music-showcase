@@ -11,17 +11,22 @@ type Format = (entry: JSZipObject) => Promise<Task>
 export const format: Format = async entry => {
 	if (entry.dir) return [0, null]
 
-	const type = lookup(entry.name)
+	try {
+		const type = lookup(entry.name)
 
-	if (type && 'audio/' === type.slice(0, 6)) {
-		return [1, push(await formatMusic(entry))]
+		if (type && 'audio/' === type.slice(0, 6)) {
+			return [1, push(await formatMusic(entry))]
+		}
+
+		if ('text/tab-separated-values' === type) {
+			return [9, await formatTsv(entry)]
+		}
+
+		return [0, null]
+	} catch (x) {
+		if (/(^|\/)\./.test(entry.name)) return [0, null]
+		throw x
 	}
-
-	if ('text/tab-separated-values' === type) {
-		return [9, await formatTsv(entry)]
-	}
-
-	return [0, null]
 }
 
 type Push = <T>(item: T) => (list: T[]) => T[]

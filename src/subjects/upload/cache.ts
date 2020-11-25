@@ -19,7 +19,7 @@ class Store<T> {
 					const req = store.get(this.key)
 					req.onerror = error
 					req.onsuccess = () => {
-						done(req.result)
+						done(req.result?.val)
 					}
 				}),
 		)
@@ -30,7 +30,7 @@ class Store<T> {
 			'readwrite',
 			store =>
 				new Promise((done, error) => {
-					const req = store.put(val, this.key)
+					const req = store.put({ ssn: this.key, val })
 					req.onerror = error
 					req.onsuccess = () => {
 						done(req.result)

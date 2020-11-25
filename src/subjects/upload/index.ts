@@ -13,6 +13,7 @@ const handleError = (x: unknown) => {
 export const pushZip = (zip: File) => {
 	inited = true
 	_upload.next(zip)
+	store.write(zip).catch(handleError)
 }
 
 export const upload = _upload.pipe(shareReplay(1))
@@ -21,8 +22,20 @@ const store = openStore()
 
 'undefined' === typeof window ||
 	store.read().then(zip => {
-		if (inited) return
+		if (inited || !zip) return
 		inited = true
 		_upload.next(zip)
-		store.write(zip).catch(handleError)
+		const { body } = document
+		const wrap = document.createElement('div')
+		wrap.style.position = 'fixed'
+		wrap.style.top = '0'
+		wrap.style.bottom = '0'
+		wrap.style.right = '0'
+		wrap.style.left = '0'
+		wrap.style.zIndex = '99999999'
+		wrap.addEventListener('click', () => {
+			body.removeChild(wrap)
+			body.querySelector('audio')?.play()
+		})
+		body.appendChild(wrap)
 	}, handleError)
