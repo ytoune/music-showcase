@@ -1,9 +1,9 @@
-import React from 'react'
+import type { FC } from 'react'
 
 export { LoadFile } from './LoadFile'
 export { Audio } from './Audio'
 export { Files } from './Files'
 
-export const Hidable: React.FC<{ show: boolean }> = ({ show, children }) => (
+export const Hidable: FC<{ show: boolean }> = ({ show, children }) => (
 	<>{show ? children : null}</>
 )

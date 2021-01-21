@@ -1,4 +1,3 @@
-import React from 'react'
 import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core'
 import { pushMove } from '~/subjects/cursor'
@@ -30,14 +29,17 @@ export const Files: React.FC<{ files: File[] }> = ({ files }) => {
 			</Div>
 		)
 	}
-	const items = files.map(({ common: { artists, title } }, idxDiff) => (
+	const items = files.map(({ name, common: { artists, title } }, idxDiff) => (
 		<ListItem
 			button
-			key={title}
+			key={name}
 			onClick={() => pushMove(idxDiff)}
 			selected={!idxDiff}
 		>
-			<ListItemText primary={title} secondary={artists && artists.join(', ')} />
+			<ListItemText
+				primary={title || name}
+				secondary={artists && artists.join(', ')}
+			/>
 		</ListItem>
 	))
 	items.unshift(...items.splice(-1))

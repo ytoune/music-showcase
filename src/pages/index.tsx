@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 
 import { pushMove } from '~/subjects/cursor'
 
@@ -34,7 +34,7 @@ const useTopFile = (files: File[]) => {
 const goprev = () => pushMove(-1)
 const gonext = () => pushMove(1)
 
-export const App: React.FC<{}> = () => {
+const App = () => {
 	const files = useFiles()
 	const isSelected = useIsSelected()
 	const { total = 0, progress = 0 } = useProgress()

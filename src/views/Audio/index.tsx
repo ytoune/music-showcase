@@ -1,17 +1,17 @@
-import React, { useRef, useCallback, useEffect } from 'react'
+import { useRef, useCallback, useEffect } from 'react'
 
 import { isSelected } from '~/subjects'
 
 type OnEnded = (replay: () => void) => void
 type PositionAsNumber = number | null | false
-type Audio = React.FC<{
+type AudioProps = {
 	start: PositionAsNumber
 	end: PositionAsNumber
 	src: string
 	onEnded: OnEnded
-}>
+}
 
-export const Audio: Audio = ({ start, end, src, onEnded }) => {
+export const Audio = ({ start, end, src, onEnded }: AudioProps) => {
 	const ref = useRef<HTMLAudioElement | null>(null)
 	useEffect(() => {
 		const setStart = () => {
