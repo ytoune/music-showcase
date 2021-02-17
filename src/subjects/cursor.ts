@@ -5,8 +5,11 @@ const moves = new BehaviorSubject(0)
 
 export const pushMove = (move: number) => moves.next(move)
 
+const initC =
+	Number('u' > typeof localStorage && localStorage.getItem('my:cursor')) || 0
+
 export const cursor = moves.pipe(
-	scan((prev, move) => prev + move, 0),
+	scan((prev, move) => prev + move, initC),
 	shareReplay(1),
 )
 

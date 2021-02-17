@@ -20,7 +20,8 @@ const onKeyDown = (event: KeyboardEvent) => {
 			select()
 			break
 		case 'Escape':
-			pushMove(0)
+			pushMove(1)
+			pushMove(-1)
 			break
 	}
 }
@@ -37,6 +38,8 @@ export const useFiles = () => {
 	const filesFormated = useMemo(() => {
 		const { length } = files
 		const i = length ? cursor % length : 0
+		if ('u' > typeof localStorage)
+			localStorage.setItem('my:cursor', String(1 + i))
 		return [...files.slice(i), ...files.slice(0, i)]
 	}, [files, cursor])
 	return filesFormated
