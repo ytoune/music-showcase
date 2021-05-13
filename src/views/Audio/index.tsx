@@ -19,6 +19,8 @@ export const Audio = ({ start, end, src, onEnded }: AudioProps) => {
 			ref.current.currentTime = 0
 		}
 		const sub = isSelected.subscribe(isSelected => isSelected && setStart())
+		const vol = Number(localStorage.getItem('my:volume'))
+		if (ref.current && vol) ref.current.volume = vol
 		return () => sub.unsubscribe()
 	}, [])
 	const onTimeUpdate = useCallback(
