@@ -40,9 +40,10 @@ const App = () => {
 	const { total = 0, progress = 0 } = useProgress()
 	const { url, start, end } = useTopFile(files)
 
-	const onEnded = useCallback(replay => (isSelected ? replay() : pushMove(1)), [
-		isSelected,
-	])
+	const onEnded = useCallback(
+		replay => (isSelected ? replay() : pushMove(1)),
+		[isSelected],
+	)
 
 	return (
 		<div>

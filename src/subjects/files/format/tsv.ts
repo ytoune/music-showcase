@@ -17,14 +17,14 @@ export const format = async (entry: JSZipObject) => {
 	return make(preview)
 }
 
-const make = (preview: Record<string, Preview>) => <T extends { name: string }>(
-	files: T[],
-) =>
-	files.map(({ name, ...file }) => ({
-		name,
-		preview: preview[name] || {},
-		...file,
-	}))
+const make =
+	(preview: Record<string, Preview>) =>
+	<T extends { name: string }>(files: T[]) =>
+		files.map(({ name, ...file }) => ({
+			name,
+			preview: preview[name] || {},
+			...file,
+		}))
 
 type HasData = {
 	filename: string
