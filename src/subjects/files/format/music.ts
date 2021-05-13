@@ -1,11 +1,13 @@
 import { JSZipObject } from 'jszip'
-import { parseBlob } from 'music-metadata-browser'
+// import { parseBlob } from 'music-metadata-browser'
 
 import { pushLoadStatus, ADD, DONE } from '../loadings'
 
 export const format = async (entry: JSZipObject) => {
 	pushLoadStatus(ADD)
 	pushLoadStatus(ADD)
+
+	const { parseBlob } = await import('music-metadata-browser')
 
 	const { name } = entry
 

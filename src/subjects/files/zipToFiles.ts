@@ -1,3 +1,4 @@
+// import { convert } from 'encoding-japanese'
 import { loadAsync, JSZipObject } from 'jszip'
 
 import { format, reducer, withPriority } from './format'
@@ -10,7 +11,13 @@ export const zipToFiles = async (zip: File) => {
 	pushLoadStatus(RESET)
 	pushLoadStatus(ADD)
 
-	const ziped = await loadAsync(zip)
+	const { convert } = await import('encoding-japanese')
+
+	const ziped = await loadAsync(zip, {
+		// @ts-expect-error: exists.
+		decodeFileName: bytes =>
+			convert(bytes, { to: 'UNICODE', from: 'AUTO', type: 'string' }),
+	})
 
 	pushLoadStatus(DONE)
 
