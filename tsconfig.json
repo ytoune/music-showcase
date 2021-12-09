@@ -28,7 +28,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": "./src",
-    "paths": { "~/*": ["*"] }
+    "paths": {
+      "~/*": [
+        "*"
+      ]
+    },
+    "incremental": true
   },
   "exclude": [
     "dist/",

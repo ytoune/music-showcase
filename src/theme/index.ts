@@ -1,6 +1,5 @@
-import { createMuiTheme } from '@material-ui/core/styles'
-
-import type { ThemeOptions } from '@material-ui/core/styles/createMuiTheme'
+import { createTheme } from '@material-ui/core/styles'
+import type { ThemeOptions } from '@material-ui/core/styles'
 
 export { default as style } from './style'
 
@@ -31,5 +30,5 @@ const styles: ThemeOptions = {
 	},
 }
 
-export const themeLight = createMuiTheme({})
-export const themeDark = createMuiTheme(styles)
+export const themeLight = createTheme({})
+export const themeDark = createTheme(styles)
