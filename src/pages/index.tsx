@@ -6,13 +6,14 @@ import { File } from '~/subjects/files/types'
 
 import { LoadFile, Files, Audio, Hidable } from '~/views'
 
-import LinearProgress from '@material-ui/core/LinearProgress'
-import Button from '@material-ui/core/Button'
+import LinearProgress from '@mui/material/LinearProgress'
+import Button from '@mui/material/Button'
 
-import { Paper } from '@material-ui/core'
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import { Paper } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@mui/styles'
 import { style, themeDark, themeLight } from '~/theme'
 import { useFiles } from '~/hooks/useFiles'
 import { useProgress } from '~/hooks/useProgress'
@@ -31,8 +32,8 @@ const useTopFile = (files: File[]) => {
 	return { url, start, end }
 }
 
-const goprev = () => pushMove(-1)
-const gonext = () => pushMove(1)
+const goPrev = () => pushMove(-1)
+const goNext = () => pushMove(1)
 
 const App = () => {
 	const files = useFiles()
@@ -47,7 +48,8 @@ const App = () => {
 
 	return (
 		<div>
-			<MuiThemeProvider theme={isSelected && url ? themeDark : themeLight}>
+			<ThemeProvider theme={isSelected && url ? themeDark : themeLight}>
+				<CssBaseline />
 				<Paper className="main">
 					<header>
 						<Hidable show={!!total && progress < 1}>
@@ -69,16 +71,16 @@ const App = () => {
 						<Files files={files} />
 					</main>
 					<footer>
-						<Button onClick={goprev} variant="outlined">
+						<Button onClick={goPrev} variant="outlined">
 							up
 						</Button>
-						<Button onClick={gonext} variant="outlined">
+						<Button onClick={goNext} variant="outlined">
 							down
 						</Button>
 						<LoadFile />
 					</footer>
 				</Paper>
-			</MuiThemeProvider>
+			</ThemeProvider>
 		</div>
 	)
 }

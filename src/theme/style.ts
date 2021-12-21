@@ -1,4 +1,4 @@
-import { StyleRules } from '@material-ui/core/styles/withStyles'
+import type { StyleRules } from '@mui/styles/withStyles'
 
 const styles: StyleRules = {
 	'@global': {

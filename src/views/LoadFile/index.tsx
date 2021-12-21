@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react'
 import type { FC, ChangeEvent } from 'react'
 import { pushZip } from '~/subjects/upload'
-import Button from '@material-ui/core/Button'
+import Button from '@mui/material/Button'
 
 export const LoadFile: FC<{}> = () => {
 	const btnRef = useRef<HTMLInputElement | null>(null)

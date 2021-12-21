@@ -26,7 +26,12 @@
     "react-ssr-prepass": "npm:preact-ssr-prepass"
   },
   "devDependencies": {
-    "@material-ui/core": "4.12.3",
+    "@emotion/babel-plugin": "11.7.2",
+    "@emotion/cache": "11.7.1",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@mui/material": "5.2.5",
+    "@mui/styles": "5.2.3",
     "@types/encoding-japanese": "1.0.18",
     "@types/gh-pages": "3.2.0",
     "@types/jest": "27.0.3",
@@ -64,5 +69,25 @@
   "browser": {
     "fs": false,
     "child_process": false
+  },
+  "prettier": {
+    "useTabs": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": false,
+    "arrowParens": "avoid",
+    "overrides": [
+      {
+        "files": [
+          "*.md",
+          "*.yml",
+          "*.json",
+          "*.yaml"
+        ],
+        "options": {
+          "useTabs": false
+        }
+      }
+    ]
   }
 }

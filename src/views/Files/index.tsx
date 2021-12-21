@@ -1,5 +1,5 @@
-import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
-import { withStyles } from '@material-ui/core'
+import { List, ListItem, ListItemText, Paper } from '@mui/material'
+import { withStyles } from '@mui/styles'
 import { pushMove } from '~/subjects/cursor'
 import { File } from '~/subjects/files/types'
 
