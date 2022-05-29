@@ -33,6 +33,6 @@ MyDocument.getInitialProps = async ctx => {
 				{initialProps.styles}
 				{sheets.getStyleElement()}
 			</>
-		),
+		) as unknown as React.ReactFragment,
 	}
 }

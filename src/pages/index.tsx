@@ -42,7 +42,7 @@ const App = () => {
 	const { url, start, end } = useTopFile(files)
 
 	const onEnded = useCallback(
-		replay => (isSelected ? replay() : pushMove(1)),
+		(replay: () => void) => (isSelected ? replay() : pushMove(1)),
 		[isSelected],
 	)
 

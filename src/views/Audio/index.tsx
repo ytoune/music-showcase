@@ -24,7 +24,9 @@ export const Audio = ({ start, end, src, onEnded }: AudioProps) => {
 		return () => sub.unsubscribe()
 	}, [])
 	const onTimeUpdate = useCallback(
-		({ target, target: { currentTime } }) => {
+		({ target }: Readonly<{ target: unknown }>) => {
+			if (!(target instanceof HTMLAudioElement)) return
+			const { currentTime } = target
 			const init = 'number' === typeof start ? start : 0
 			switch (true) {
 				case 'number' !== typeof currentTime:
