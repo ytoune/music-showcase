@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import createEmotionCache from '~/theme/create-emotion-cache'
 import { useEffect } from 'react'
+import { GlobalStyles } from '~/theme/global'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -34,6 +35,7 @@ const App = (props: MyAppProps) => {
 					content="音楽再生するやつ。即売会などでのプレビュー用のシンプルな音楽プレイヤー。"
 				/>
 			</Head>
+			<GlobalStyles />
 			<div id="screen">
 				<Component {...pageProps} />
 			</div>

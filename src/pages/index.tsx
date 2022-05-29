@@ -13,8 +13,7 @@ import { Paper } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
-import { withStyles } from '@mui/styles'
-import { style, themeDark, themeLight } from '~/theme'
+import { themeDark, themeLight } from '~/theme'
 import { useFiles } from '~/hooks/use-files'
 import { useProgress } from '~/hooks/use-progress'
 import { useIsSelected } from '~/hooks/use-is-selected'
@@ -85,4 +84,4 @@ const App = () => {
 	)
 }
 
-export default withStyles(style)(App)
+export default App

@@ -1,19 +1,11 @@
 import { List, ListItem, ListItemText, Paper } from '@mui/material'
-import { withStyles } from '@mui/styles'
 import { pushMove } from '~/subjects/cursor'
 import { File } from '~/subjects/files/types'
-
-const Div = withStyles({
-	root: {
-		textAlign: 'center',
-		padding: '80px 30px',
-	},
-})(Paper)
 
 export const Files: React.FC<{ files: File[] }> = ({ files }) => {
 	if (!files.length) {
 		return (
-			<Div>
+			<Paper sx={{ textAlign: 'center', padding: '80px 30px' }}>
 				下のボタンから
 				<br />
 				mp3 を zip で<br />
@@ -26,7 +18,7 @@ export const Files: React.FC<{ files: File[] }> = ({ files }) => {
 				>
 					使い方
 				</a>
-			</Div>
+			</Paper>
 		)
 	}
 	const items = files.map(({ name, common: { artists, title } }, idxDiff) => (
