@@ -1,7 +1,7 @@
 import { map, switchMap, shareReplay, startWith } from 'rxjs/operators'
 
 import { upload } from '../upload'
-import { zipToFiles } from './zipToFiles'
+import { zipToFiles } from './zip-to-files'
 
 import { cache, save } from './cache'
 

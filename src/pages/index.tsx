@@ -15,9 +15,9 @@ import CssBaseline from '@mui/material/CssBaseline'
 
 import { withStyles } from '@mui/styles'
 import { style, themeDark, themeLight } from '~/theme'
-import { useFiles } from '~/hooks/useFiles'
-import { useProgress } from '~/hooks/useProgress'
-import { useIsSelected } from '~/hooks/useIsSelected'
+import { useFiles } from '~/hooks/use-files'
+import { useProgress } from '~/hooks/use-progress'
+import { useIsSelected } from '~/hooks/use-is-selected'
 
 const useTopFile = (files: File[]) => {
 	const { blob, preview: { start = 0, end = 0 } = {} } = useMemo(

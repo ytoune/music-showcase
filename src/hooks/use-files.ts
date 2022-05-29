@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import { useObservable } from '~/libs/useObservable'
+import { useObservable } from '~/libs/use-observable'
 
 import { files as files_, cursor as cursor_ } from '~/subjects'
 import { pushMove } from '~/subjects/cursor'

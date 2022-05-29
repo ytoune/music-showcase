@@ -2,7 +2,7 @@ import { Preview } from '../types'
 import { JSZipObject } from 'jszip'
 
 import { pushLoadStatus, ADD, DONE } from '../loadings'
-import { parseTSV } from './parseTSV'
+import { parseTSV } from './parse-tsv'
 
 export const format = async (entry: JSZipObject) => {
 	pushLoadStatus(ADD)

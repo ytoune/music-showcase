@@ -1,4 +1,4 @@
-import { Store, openDB } from '~/libs/Store'
+import { Store, openDB } from '~/libs/store'
 
 import { Observable, of } from 'rxjs'
 import type { File } from './types'
