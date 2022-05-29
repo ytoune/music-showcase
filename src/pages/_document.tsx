@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-// import { ServerStyleSheets } from '@mui/styles'
 import createEmotionServer from '@emotion/server/create-instance'
 import createEmotionCache from '~/theme/create-emotion-cache'
 
@@ -28,9 +27,6 @@ MyDocument.getInitialProps = async ctx => {
 
 	ctx.renderPage = () =>
 		originalRenderPage({
-			// enhanceApp: App => props =>
-			// 	// @ts-expect-error: ignore
-			// 	sheets.collect(<App emotionCache={cache} {...props} />),
 			// @ts-expect-error: ignore
 			enhanceApp: App => props => <App emotionCache={cache} {...props} />,
 		})
@@ -49,12 +45,6 @@ MyDocument.getInitialProps = async ctx => {
 
 	return {
 		...initialProps,
-		// styles: (
-		// 	<>
-		// 		{initialProps.styles}
-		// 		{sheets.getStyleElement()}
-		// 	</>
-		// ) as unknown as React.ReactFragment,
 		emotionStyleTags,
 	}
 }

@@ -3,7 +3,6 @@ import Head from 'next/head'
 
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import createEmotionCache from '~/theme/create-emotion-cache'
-import { useEffect } from 'react'
 import { GlobalStyles } from '~/theme/global'
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -15,11 +14,6 @@ interface MyAppProps extends AppProps {
 
 const App = (props: MyAppProps) => {
 	const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-	useEffect(() => {
-		// Remove the server-side injected CSS.
-		const styles = document.querySelector('#jss-server-side')
-		styles?.parentElement?.removeChild(styles)
-	}, [])
 
 	return (
 		<CacheProvider value={emotionCache}>
