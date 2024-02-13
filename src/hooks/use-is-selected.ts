@@ -1,6 +1,4 @@
 import { useObservable } from '~/libs/use-observable'
 import { isSelected } from '~/subjects'
 
-export const useIsSelected = () => {
-	return useObservable(isSelected, false)
-}
+export const useIsSelected = () => useObservable(isSelected, false)
