@@ -11,6 +11,11 @@ type AudioProps = {
   onEnded: OnEnded
 }
 
+const onVolumeChange = (e: { readonly target: EventTarget }) => {
+  if (e.target instanceof HTMLAudioElement)
+    localStorage.setItem('my:volume', String(e.target.volume))
+}
+
 export const Audio = ({ start, end, src, onEnded }: AudioProps) => {
   const ref = useRef<HTMLAudioElement | null>(null)
   useEffect(() => {
@@ -57,6 +62,7 @@ export const Audio = ({ start, end, src, onEnded }: AudioProps) => {
       autoPlay
       onEnded={onEndedWrap}
       onTimeUpdate={onTimeUpdate}
+      onVolumeChange={onVolumeChange}
     />
   )
 }
